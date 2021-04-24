@@ -70,3 +70,9 @@ jobs:
         if: success()
         run: |
           az group delete --name ${{env.AZURE_RESOURCE_GROUP}} --subscription ${{secrets.AZURE_SUBSCRIPTION_ID}} --yes
+          
+   jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    if: contains(github.event.pull_request.labels.*.name, 'spin up environment')
